@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UrlParts demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 2rem; }
+    pre  { background:#f4f4f4; padding:1rem; border-radius:6px; }
+    code { color:#c7254e; }
+  </style>
+</head>
+<body>
+
+<code>const obj = UrlParts.parse('https://u:p@ex.com:8080/a/b?x=1&y=2#top');</code>
+<h2>Parse → object</h2>
+<pre id="before"></pre>
+
+<code>const url = UrlParts.build({
+    protocol:'https',
+    host:'example.com',
+    path:'/api',
+    query:{ q:'js', page:3 },
+    hash:'section'
+  });</code>
+<h2>Build → URL string</h2>
+<pre id="after"></pre>
+
+<!-- подключи свою локальную сборку urlparts.js -->
+<script src="urlparts.js"></script>
+<script>
+  // 1) Parse
+  const obj = UrlParts.parse('https://u:p@ex.com:8080/a/b?x=1&y=2#top');
+  // вывод в html
+  document.getElementById('before').textContent =
+    JSON.stringify(obj, null, 2);
+
+  // 2) Build
+  const url = UrlParts.build({
+    protocol:'https',
+    host:'example.com',
+    path:'/api',
+    query:{ q:'js', page:3 },
+    hash:'section'
+  });
+  document.getElementById('after').textContent = url;
+</script>
+</body>
+</html>
